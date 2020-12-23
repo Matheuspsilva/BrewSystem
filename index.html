@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Brew System</title>
+        <link rel="stylesheet" href="./src/css/bootstrap.min.css" inline/>
+        <link rel="stylesheet" href="./src/css/bootstrap-vue.min.css" inline/>
+        <link rel="stylesheet" href="./src/css/style.css" inline/>
+    </head>
+    <body>
+        <div id="app" v-cloak>
+            <b-container fluid>
+                <b-card class="card-container mx-auto" header-class="main-card-header" header="Brew System">
+                    <b-form>
+                        <b-form-group class="input-rampa" label="Quantidade de rampas de temperatura">
+                            <b-form-select v-model.number="selected" type="number"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></b-form-select>
+                        </b-form-group>
+                        <b-row>
+                            <b-col>
+                                <ul style="padding: 0;">
+                                    <li v-for="n in selected" style="list-style: none;">
+                                        Rampa {{n}}<b-input-group prepend="" append="ºC"><b-form-input type="number" placeholder="0"></b-form-input></b-input-group>
+                                    </li>
+                                </ul>
+                            </b-col>
+                            <b-col>
+                                <ul style="padding: 0;">
+                                    <li v-for="n in selected" style="list-style: none;">
+                                        Tempo<b-input-group prepend="" append="min"><b-form-input type="number" placeholder="0"></b-form-input></b-input-group>
+                                    </li>
+                                </ul>
+                            </b-col>
+                        </b-row>
+                        <div><b-button variant="primary">Iniciar</b-button><b-button>Configurações</b-button></div>
+                    </b-form>
+                </b-card>
+            </b-container>
+        </div>
+        <script src="./src/js/vue.min.js" inline></script>
+        <script src="./src/js/bootstrap-vue.js" inline></script>
+        <script>
+            new Vue({
+                el: "#app",
+                data() {
+                    return {
+                        selected: "",
+                    };
+                },
+                methods: {},
+            });
+        </script>
+    </body>
+</html>
