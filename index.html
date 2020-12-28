@@ -11,6 +11,22 @@
     <body>
         <div id="app" v-cloak>
             <b-container fluid>
+               
+                <b-card class="card-container mx-auto" header-class="main-card-header" header="ESP DS18B20 Server">
+                    <p>
+                      <i class="fas fa-thermometer-half" style="color:#dbe1e7;"></i> 
+                      <span class="ds-labels">Temperature Celsius</span> 
+                      <span id="temperaturec">%TEMPERATUREC%</span>
+                      <sup class="units">&deg;C</sup>
+                    </p>
+                    <p>
+                      <i class="fas fa-thermometer-half" style="color:#dbe1e7;"></i> 
+                      <span class="ds-labels">Temperature Fahrenheit</span>
+                      <span id="temperaturef">%TEMPERATUREF%</span>
+                      <sup class="units">&deg;F</sup>
+                    </p>
+                </b-card>
+
                 <b-card class="card-container mx-auto" header-class="main-card-header" header="Brew System">
                     <b-form>
                         <b-form-group class="input-rampa" label="Quantidade de rampas de temperatura">
@@ -49,6 +65,28 @@
                 },
                 methods: {},
             });
+        </script> 
+        <script>
+            setInterval(function ( ) {
+              var xhttp = new XMLHttpRequest();
+              xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                  document.getElementById("temperaturec").innerHTML = this.responseText;
+                }
+              };
+              xhttp.open("GET", "/temperaturec", true);
+              xhttp.send();
+            }, 10000) ;
+            setInterval(function ( ) {
+              var xhttp = new XMLHttpRequest();
+              xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                  document.getElementById("temperaturef").innerHTML = this.responseText;
+                }
+              };
+              xhttp.open("GET", "/temperaturef", true);
+              xhttp.send();
+            }, 10000) ;
         </script>
     </body>
 </html>
