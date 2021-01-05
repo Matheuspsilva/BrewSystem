@@ -4,7 +4,7 @@
   body {
     /* background-color: #42b983!important; */
     /* background-color: #EAEAEA!important; */
-    background-color: #031226!important;
+    background-color: #3a3b58!important;
     height: 100%;
     margin: 0;
   }
@@ -16,6 +16,23 @@
     text-align: center;
     color: #dbe1e7;
   }
+
+  html {
+    font-family: Arial;
+    display: inline-block;
+    margin: 0px auto;
+    text-align: center;
+    font-size: 1.2rem;
+   }
+   h2 { font-size: 3.0rem; }
+   p { font-size: 3.0rem; }
+   .units { font-size: 1.2rem; }
+   .ds-labels{
+     font-size: 1.5rem;
+     vertical-align:middle;
+     padding-bottom: 15px;
+   }
+   
   .input-ssid {
     padding-bottom: 15px;
     max-width: 21rem;
@@ -54,8 +71,8 @@
     font-variation-settings: "wght" 200, "ital" 1;
     color: black;
   }
-  .card-container {
-    max-width: 26rem;
+  .card-a {
+    max-width: 30rem;
     height: 35rem;
     color: #dbe1e7;
     background-color:#2E2D40;
@@ -95,4 +112,8 @@
   div.modal .modal-dialog.modal-xsm {
     max-width: 300px!important;
     margin: auto;
+  }
+
+  .filter-white{
+    filter: invert(99%) sepia(6%) saturate(0%) hue-rotate(135deg) brightness(108%) contrast(100%);
   }

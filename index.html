@@ -11,46 +11,70 @@
     <body>
         <div id="app" v-cloak>
             <b-container fluid>
-               
-                <b-card class="card-container mx-auto" header-class="main-card-header" header="ESP DS18B20 Server">
-                    <p>
-                      <i class="fas fa-thermometer-half" style="color:#dbe1e7;"></i> 
-                      <span class="ds-labels">Temperature Celsius</span> 
-                      <span id="temperaturec">%TEMPERATUREC%</span>
-                      <sup class="units">&deg;C</sup>
-                    </p>
-                    <p>
-                      <i class="fas fa-thermometer-half" style="color:#dbe1e7;"></i> 
-                      <span class="ds-labels">Temperature Fahrenheit</span>
-                      <span id="temperaturef">%TEMPERATUREF%</span>
-                      <sup class="units">&deg;F</sup>
-                    </p>
-                </b-card>
+                <h1 class="mt-5">Brew System</h1>
+                    <div class="card-group">     
+        
+                        <b-card class="card-a mx-auto" header-class="main-card-header" header="Temperatura">
+                            <p class="text-center">
+                                <span class="ds-labels">Celsius</span> 
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-thermometer-half" viewBox="0 0 16 16">
+                                    <path d="M8 1.75a.25.25 0 0 1 .25.25v9.02a1.5 1.5 0 1 1-.5 0V2A.25.25 0 0 1 8 1.75z"/>
+                                    <path d="M6 2a2 2 0 1 1 4 0v7.627a3.5 3.5 0 1 1-4 0V2zm2-1a1 1 0 0 0-1 1v7.901a.5.5 0 0 1-.25.433A2.499 2.499 0 0 0 8 15a2.5 2.5 0 0 0 1.25-4.666.5.5 0 0 1-.25-.433V2a1 1 0 0 0-1-1z"/>
+                                </svg>
+                                <span id="temperaturec">%TEMPERATUREC%</span>
+                                <sup class="units">&deg;C</sup>
+                            </p>
+                            <p class="text-center">
+                                <span class="ds-labels">Fahrenheit</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-thermometer-half" viewBox="0 0 16 16">
+                                    <path d="M8 1.75a.25.25 0 0 1 .25.25v9.02a1.5 1.5 0 1 1-.5 0V2A.25.25 0 0 1 8 1.75z"/>
+                                    <path d="M6 2a2 2 0 1 1 4 0v7.627a3.5 3.5 0 1 1-4 0V2zm2-1a1 1 0 0 0-1 1v7.901a.5.5 0 0 1-.25.433A2.499 2.499 0 0 0 8 15a2.5 2.5 0 0 0 1.25-4.666.5.5 0 0 1-.25-.433V2a1 1 0 0 0-1-1z"/>
+                                </svg>
+                                <span id="temperaturef">%TEMPERATUREF%</span>
+                                <sup class="units">&deg;F</sup>
+                            </p>
 
-                <b-card class="card-container mx-auto" header-class="main-card-header" header="Brew System">
-                    <b-form>
-                        <b-form-group class="input-rampa" label="Quantidade de rampas de temperatura">
-                            <b-form-select v-model.number="selected" type="number"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></b-form-select>
-                        </b-form-group>
-                        <b-row>
-                            <b-col>
-                                <ul style="padding: 0;">
-                                    <li v-for="n in selected" style="list-style: none;">
-                                        Rampa {{n}}<b-input-group prepend="" append="ºC"><b-form-input type="number" placeholder="0"></b-form-input></b-input-group>
-                                    </li>
-                                </ul>
-                            </b-col>
-                            <b-col>
-                                <ul style="padding: 0;">
-                                    <li v-for="n in selected" style="list-style: none;">
-                                        Tempo<b-input-group prepend="" append="min"><b-form-input type="number" placeholder="0"></b-form-input></b-input-group>
-                                    </li>
-                                </ul>
-                            </b-col>
-                        </b-row>
-                        <div><b-button variant="primary">Iniciar</b-button><b-button>Configurações</b-button></div>
-                    </b-form>
-                </b-card>
+                        </b-card>
+ 
+                        <b-card class="card-a mx-auto" header-class="main-card-header" header="Rampas">
+                            <b-form action="/get" method="get">
+
+                                <b-form-group class="input-rampa" label="Quantidade de rampas de temperatura">
+                                    <b-form-select  v-model.number="quantidade_rampas" id="quantidade_rampas" name="quantidade_rampas" type="number">
+                                        <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+                                    </b-for-selectm>
+                                </b-form-group>
+                                <b-row>
+                                    <b-col>
+                                        <ul style="padding: 0;">
+                                            <li v-for="n in quantidade_rampas" style="list-style: none;">
+                                         Temperatura<b-input-group prepend="" append="ºC">
+                                                    <b-form-input type="number" placeholder="0" v-model="form['temperatura_' + n ]" :id="'temperatura_' + n" :name="'temperatura_' + n"></b-form-input>
+                                                </b-input-group>
+                                            </li>
+                                        </ul>
+                                        
+                                    </b-col>
+                                    <b-col>
+                                        <ul style="padding: 0;">
+                                            <li v-for="n in quantidade_rampas" style="list-style: none;">
+                                               Tempo<b-input-group prepend="" append="min">
+                                                    <b-form-input type="number" placeholder="0"  v-model="form['tempo_' + n ]" :id="'tempo_' + n" :name="'tempo_' + n"></b-form-input>
+                                                </b-input-group>
+                                            </li>
+                                        </ul>
+                                    </b-col>
+                                </b-row>
+                                <div>
+                                    <b-button type="submit" variant="primary">Iniciar</b-button>
+                                    <b-button>Configurações</b-button>
+                                </div>
+                            </b-form>
+                        </b-card>
+                        <b-card class="card-a mx-auto" header-class="main-card-header" header="Configurações">
+         
+                        </b-card> 
+                    </div>   
             </b-container>
         </div>
         <script src="./src/js/vue.min.js" inline></script>
@@ -59,11 +83,17 @@
             new Vue({
                 el: "#app",
                 data() {
+                    
                     return {
-                        selected: "",
+                        quantidade_rampas: "",
+                        form: { 
+
+                        }
                     };
                 },
-                methods: {},
+                methods: {
+                }
+ 
             });
         </script> 
         <script>
